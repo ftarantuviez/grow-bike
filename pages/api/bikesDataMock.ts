@@ -90,3 +90,5 @@ const bikes: Bike[] = [
     title: "",
   },
 ];
+
+export default bikes;
