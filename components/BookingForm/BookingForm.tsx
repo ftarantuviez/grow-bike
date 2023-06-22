@@ -1,31 +1,10 @@
 import { Button, TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { DatePicker, DateValidationError } from "@mui/x-date-pickers";
-import { PickerChangeHandlerContext } from "@mui/x-date-pickers/internals/hooks/usePicker/usePickerValue.types";
+import { DatePicker } from "@mui/x-date-pickers";
 import React from "react";
+import { BookingFormProps } from "./types";
 
-type Props = {
-  form: {
-    name: string;
-    phone: string;
-    email: string;
-    repeatEmail: string;
-    initialDate: string;
-    finalDate: string;
-  };
-  amountOfDaysRented: number;
-  priceCalculated: number;
-  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  handleDateChange: (
-    val: string
-  ) => (
-    value: string | null,
-    context: PickerChangeHandlerContext<DateValidationError>
-  ) => void;
-  onSubmit: React.FormEventHandler<HTMLFormElement>;
-};
-
-const BookingForm = (props: Props) => {
+const BookingForm = (props: BookingFormProps) => {
   const {
     form,
     onChange,
@@ -99,14 +78,16 @@ const BookingForm = (props: Props) => {
             onChange={handleDateChange("final")}
             label={"Final Date"}
             disabled={!form.initialDate}
-            minDate={form.initialDate}
+            minDate={form.initialDate ?? ""}
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="body1">
-            You can rent this bike for {amountOfDaysRented} days at{" "}
-            <span style={{ color: "#00a650" }}>{priceCalculated} USD</span>
-          </Typography>
+          {!isNaN(amountOfDaysRented) && (
+            <Typography variant="body1">
+              You can rent this bike for {amountOfDaysRented} days at{" "}
+              <span style={{ color: "#00a650" }}>{priceCalculated} USD</span>
+            </Typography>
+          )}
         </Grid>
         <Grid item xs={12} md={6} display="flex" justifyContent="flex-end">
           <Button
