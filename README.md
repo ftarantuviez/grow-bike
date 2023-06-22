@@ -1,38 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## GrowPro | GrowBike
 
-## Getting Started
+### Descritption ✍️
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Welcome to GrowBike, your ultimate destination for bike rentals. We offer three types of bikes to cater to every rider's taste: normal, vintage, and electrical. Whether you prefer a classic ride, a touch of nostalgia, or the convenience of electric assistance, we have the perfect bike for your needs. Rent a bike with us today and experience the joy of cycling in style and comfort. 😎
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Here a video of mine explaining and going through all the platform: [the video](). See it, then tell me your thoughts on me becoming youtuber 😏
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Technical specifications 👨‍💻
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### Stack 📝
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Typescript** (v5.1.3)
+- **React** (v18.2.0)
+- **NextJS** (v13.4.6)
+- **Material UI** (v5.13.5)
+- **Next Seo** (v5.15.0)
+- **Eslint** (v8.43.0)
 
-## Learn More
+#### Folder Structure 🗂
 
-To learn more about Next.js, take a look at the following resources:
+- **components**: Here are the elements that can be used in many parts of the code.
+- **constants**: Contains files with data is not gonna change and its used many times.
+- **context**: It has all the context and providers of the app.
+- **hooks**: The custom hooks that are gonna be used.
+- **pages**: NextJS routes containing the screens that are gonna be rendered.
+- **public**: Public files such us images, favicon and more.
+- **styles**: Global styles and theme configuration.
+- **tests**: To make sure our app is running as it supposed.
+- **types**: Data types used for Typescript purposes.
+- **utils**: Useful functions that could be reused
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Get it running locally 💻
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. `git clone git@github.com:ftarantuviez/grow-bike.git`
+2. `npm install` or `yarn`
+3. `npm run dev` or `yarn dev`
 
-## Deploy on Vercel
+### Deploy 🚀
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The app is deployed in Vercel.
+You can find a production version in [this url](TODO).

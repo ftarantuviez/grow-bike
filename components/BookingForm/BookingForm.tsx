@@ -39,7 +39,10 @@ const BookingForm = (props: Props) => {
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <DatePicker />
+          <DatePicker sx={{ width: "100%" }} />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <DatePicker sx={{ width: "100%" }} disabled />
         </Grid>
       </Grid>
     </form>
