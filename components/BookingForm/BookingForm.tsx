@@ -1,16 +1,53 @@
-import { TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { DatePicker } from "@mui/x-date-pickers";
+import { DatePicker, DateValidationError } from "@mui/x-date-pickers";
+import { PickerChangeHandlerContext } from "@mui/x-date-pickers/internals/hooks/usePicker/usePickerValue.types";
 import React from "react";
 
-type Props = {};
+type Props = {
+  form: {
+    name: string;
+    phone: string;
+    email: string;
+    repeatEmail: string;
+    initialDate: string;
+    finalDate: string;
+  };
+  amountOfDaysRented: number;
+  priceCalculated: number;
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  handleDateChange: (
+    val: string
+  ) => (
+    value: string | null,
+    context: PickerChangeHandlerContext<DateValidationError>
+  ) => void;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+};
 
 const BookingForm = (props: Props) => {
+  const {
+    form,
+    onChange,
+    handleDateChange,
+    priceCalculated,
+    amountOfDaysRented,
+    onSubmit,
+  } = props;
+
   return (
-    <form style={{ width: "100%" }}>
+    <form style={{ width: "100%" }} onSubmit={onSubmit}>
       <Grid container spacing={5}>
         <Grid item xs={12} md={6}>
-          <TextField fullWidth id="name" label="Name" variant="outlined" />
+          <TextField
+            fullWidth
+            id="name"
+            label="Name"
+            variant="outlined"
+            value={form.name}
+            onChange={onChange}
+            required
+          />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -18,6 +55,9 @@ const BookingForm = (props: Props) => {
             id="phone"
             label="Phone number"
             variant="outlined"
+            value={form.phone}
+            onChange={onChange}
+            required
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -27,22 +67,56 @@ const BookingForm = (props: Props) => {
             label="Email"
             variant="outlined"
             type="email"
+            value={form.email}
+            onChange={onChange}
+            required
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            id="email"
+            id="repeatEmail"
             label="Repeat your email"
             variant="outlined"
             type="email"
+            value={form.repeatEmail}
+            onChange={onChange}
+            required
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <DatePicker sx={{ width: "100%" }} />
+          <DatePicker
+            sx={{ width: "100%" }}
+            value={form.initialDate}
+            onChange={handleDateChange("initial")}
+            label={"Initial Date"}
+          />
         </Grid>
         <Grid item xs={12} md={6}>
-          <DatePicker sx={{ width: "100%" }} disabled />
+          <DatePicker
+            sx={{ width: "100%" }}
+            value={form.finalDate}
+            onChange={handleDateChange("final")}
+            label={"Final Date"}
+            disabled={!form.initialDate}
+            minDate={form.initialDate}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography variant="body1">
+            You can rent this bike for {amountOfDaysRented} days at{" "}
+            <span style={{ color: "#00a650" }}>{priceCalculated} USD</span>
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={6} display="flex" justifyContent="flex-end">
+          <Button
+            variant="outlined"
+            color="secondary"
+            type="submit"
+            disabled={!form.finalDate || !form.initialDate}
+          >
+            Rent bike
+          </Button>
         </Grid>
       </Grid>
     </form>

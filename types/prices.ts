@@ -1,6 +1,10 @@
 type Price = {
   id: string;
-  pricePerDay: number;
+  bikeType: "vintage" | "normal" | "electric";
+  pricePerDay: {
+    firstHalfMonth: 10;
+    secondHalfMonth: 12;
+  };
   currency: string;
   initialDaysPrice: number;
 };
