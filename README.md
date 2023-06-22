@@ -6,7 +6,7 @@
 
 Welcome to GrowBike, your ultimate destination for bike rentals. We offer three types of bikes to cater to every rider's taste: normal, vintage, and electrical. Whether you prefer a classic ride, a touch of nostalgia, or the convenience of electric assistance, we have the perfect bike for your needs. Rent a bike with us today and experience the joy of cycling in style and comfort. 😎
 
-Here a video of mine explaining and going through all the platform: [the video](TODO). See it, then tell me your thoughts on me becoming youtuber 😏
+Here a video of mine explaining and going through all the platform: [the video](https://www.loom.com/share/02f0f8c0f2534fbab6cd2dbc22c50a4a?sid=603cd934-3a81-4c0c-93b4-89890f0a1006). See it, then tell me your thoughts on me becoming youtuber 😏
 
 ### Technical specifications 👨‍💻
 

@@ -13,7 +13,6 @@ export default function handler(
 ) {
   const { bikeId } = req.query;
   const bike = bikes.find((bik) => bik.id === bikeId);
-  console.log(bike);
   if (!bike) {
     return res.status(200).json({ success: false, message: "Bike not found" });
   }
