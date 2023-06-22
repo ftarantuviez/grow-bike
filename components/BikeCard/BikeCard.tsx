@@ -1,68 +1,77 @@
-import React, { useState } from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
+import React from "react";
 import Typography from "@mui/material/Typography";
-import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
-import PaidIcon from "@mui/icons-material/Paid";
+import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
+import FilterVintageIcon from "@mui/icons-material/FilterVintage";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Box from "@mui/material/Box";
 import Image from "next/image";
+import { StyledContainer } from "./BikeCard.styles";
 
 type BikeCardProps = {
   image: string;
   title: string;
   description: string;
-  type: "old" | "electric" | "normal";
-  price: number;
+  type: "vintage" | "electric" | "normal";
   color: string;
+  id: string;
+};
+
+const dataByType = {
+  vintage: {
+    icon: <FilterVintageIcon color="warning" />,
+    iconName: "Vintage",
+  },
+  normal: {
+    icon: <AutoAwesomeIcon color="primary" />,
+    iconName: "Normal",
+  },
+  electric: {
+    icon: <BatteryChargingFullIcon color="success" />,
+    iconName: "Electric",
+  },
 };
 
 const BikeCard = (props: BikeCardProps) => {
-  const { image, title, description, type, price, color } = props;
-  const [isActive, setIsActive] = useState(false);
+  const { image, title, type, color, id } = props;
 
-  const handleHover = () => setIsActive(!isActive);
+  const { icon, iconName } = dataByType[type];
   return (
-    <Card onMouseLeave={handleHover} onMouseEnter={handleHover}>
-      <Box
-        bgcolor={isActive ? color : "auto"}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Image
-          src={"/images/bikes/vintage/Ladies-Classic-7-Speed-Bike.png"}
-          width="400"
-          height="400"
-          alt={title}
-        />
+    <StyledContainer backgroundColor={color} href={`/bikes/${id}`}>
+      <div className="backgroundAnimation" />
+      <Box position="relative" display="flex" justifyContent="center">
+        <Image src={image} width="500" height="500" alt={title} />
       </Box>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+
+      <Box>
+        <Typography
+          gutterBottom
+          variant="h6"
+          component="div"
+          textAlign={"center"}
+          fontWeight={"bold"}
+        >
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary" mb={2}>
-          {description}
-        </Typography>
-        <Box display="flex" alignItems="center" mb={0.5}>
-          <ElectricBoltIcon color="info" fontSize="small" />
-          <Typography variant="body2" color="text.secondary" ml={0.5}>
-            {type}
-          </Typography>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection={"column"}
+        >
+          <Box display="flex" alignItems="center" mb={0.5}>
+            {icon}
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              fontSize="medium"
+              ml={0.5}
+            >
+              {iconName}
+            </Typography>
+          </Box>
         </Box>
-        <Box display="flex" alignItems="center">
-          <PaidIcon color="success" fontSize="small" />
-          <Typography variant="body2" color="text.secondary" ml={0.5}>
-            Starting from {price}
-          </Typography>
-        </Box>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+      </Box>
+    </StyledContainer>
   );
 };
 

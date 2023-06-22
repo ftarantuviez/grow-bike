@@ -6,20 +6,33 @@ export const BikesContext = createContext<BikesProviderValues>({
   bikes: [],
   loading: false,
   getBikes: () => {},
+  error: {
+    isError: false,
+    message: "",
+  },
 });
 
 const BikesProvider: FC<BikesProviderProps> = ({ children }) => {
   const [bikes, setBikes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({
+    isError: false,
+    message: "",
+  });
 
   const getBikes = async () => {
+    setLoading(true);
     try {
-      const { data } = await axios.get("/api/hello");
+      const { data } = await axios.get("/api/get-bikes");
+      setLoading(false);
 
       if (data?.success) {
         setBikes(data?.bikes);
       }
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+      setError({ isError: true, message: "Something went wrong" });
+    }
   };
 
   useEffect(() => {
@@ -30,6 +43,7 @@ const BikesProvider: FC<BikesProviderProps> = ({ children }) => {
     bikes,
     loading,
     getBikes,
+    error,
   };
 
   return (

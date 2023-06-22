@@ -3,6 +3,6 @@ type Bike = {
   title: string;
   description: string;
   image: string;
-  type: "old" | "electric" | "normal";
-  priceId: string;
+  type: "vintage" | "electric" | "normal";
+  color: string;
 };

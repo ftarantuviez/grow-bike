@@ -4,6 +4,10 @@ export type BikesProviderValues = {
   bikes: Bike[];
   loading: boolean;
   getBikes(): void;
+  error: {
+    isError: boolean;
+    message: string;
+  };
 };
 
 export type BikesProviderProps = {

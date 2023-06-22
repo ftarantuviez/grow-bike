@@ -1,45 +1,25 @@
 import BikeCard from "@/components/BikeCard";
-import { Grid } from "@mui/material";
+import useBikes from "@/hooks/useBikes";
+import Grid from "@mui/material/Grid";
 
-type HomeProps = {};
-
-const Home = (props: HomeProps) => {
+const Home = () => {
+  const { bikes } = useBikes();
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
-        <BikeCard
-          image={
-            "https://www.reidbikes.com/wp-content/uploads/2022/10/Ladies-Classic-eBike-3-900x588.png"
-          }
-          title="BICICLETA EXER C 211"
-          type={"electric"}
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, quaerat voluptate molestiae."
-          price={10}
-          color="red"
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <BikeCard
-          image={
-            "https://www.reidbikes.com/wp-content/uploads/2022/10/Ladies-Classic-eBike-3-900x588.png"
-          }
-          title="BICICLETA EXER C 211"
-          type={"electric"}
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, quaerat voluptate molestiae."
-          price={10}
-          color="red"
-        />
-      </Grid>
+    <Grid container spacing={3} p={9}>
+      {bikes?.map((bike) => (
+        <Grid item xs={12} md={6} key={bike.id} mb={3}>
+          <BikeCard
+            image={bike.image}
+            title={bike.title}
+            type={bike.type}
+            description={bike.description}
+            color={bike.color}
+            id={bike.id}
+          />
+        </Grid>
+      ))}
     </Grid>
   );
-};
-
-export const getServerSideProps = () => {
-  return {
-    props: {
-      hola: "hola",
-    },
-  };
 };
 
 export default Home;
