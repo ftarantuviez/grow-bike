@@ -16,7 +16,7 @@ type BikeCardProps = {
   id: string;
 };
 
-const dataByType = {
+export const dataByType = {
   vintage: {
     icon: <FilterVintageIcon color="warning" />,
     iconName: "Vintage",
